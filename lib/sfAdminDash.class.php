@@ -108,7 +108,7 @@ class sfAdminDash
     $categories = self::getProperty('categories', array());
     foreach ($categories as $category_name => $category_data)
     {
-      if (isset($category_data['items']))
+      if (array_key_exists("items", $category_data))
       {
         array_walk($categories[$category_name]['items'], 'sfAdminDash::initItem');
       }
@@ -196,7 +196,7 @@ class sfAdminDash
     $modulename = $context -> getModuleName();
     $translation = self::getProperty("translator", array());
 
-    if (isset($translation[$modulename]))
+    if (array_key_exists($modulename, $translation))
     {
       if (is_array($translation[$modulename]))
       {
@@ -212,7 +212,7 @@ class sfAdminDash
       {
         if (($modulename == $key || $modulename == $item['url']))
         {
-          if (isset($item['name']))
+          if (array_key_exists('name', $item))
           {
             return $item['name']; // yay, we got the name!
           }
